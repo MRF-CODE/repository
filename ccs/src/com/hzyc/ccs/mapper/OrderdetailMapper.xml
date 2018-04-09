@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.OrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Orderdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dd_code" property="ddCode" jdbcType="VARCHAR" />
+    <result column="good_code" property="goodCode" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dd_code, good_code, number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.Orderdetail" >
+    insert into orderdetail (id, dd_code, good_code, 
+      number)
+    values (#{id,jdbcType=INTEGER}, #{ddCode,jdbcType=VARCHAR}, #{goodCode,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.Orderdetail" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ddCode != null" >
+        dd_code,
+      </if>
+      <if test="goodCode != null" >
+        good_code,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ddCode != null" >
+        #{ddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodCode != null" >
+        #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.ccs.model.Orderdetail" >
+    update orderdetail
+    <set >
+      <if test="ddCode != null" >
+        dd_code = #{ddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodCode != null" >
+        good_code = #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.ccs.model.Orderdetail" >
+    update orderdetail
+    set dd_code = #{ddCode,jdbcType=VARCHAR},
+      good_code = #{goodCode,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

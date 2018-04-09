@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.VipMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Vip" >
+    <result column="hy_code" property="hyCode" jdbcType="VARCHAR" />
+    <result column="hy_kind_code" property="hyKindCode" jdbcType="VARCHAR" />
+    <result column="hy_tel" property="hyTel" jdbcType="VARCHAR" />
+    <result column="hy_name" property="hyName" jdbcType="VARCHAR" />
+    <result column="hy_card" property="hyCard" jdbcType="VARCHAR" />
+    <result column="hy_photo" property="hyPhoto" jdbcType="VARCHAR" />
+    <result column="hy_total" property="hyTotal" jdbcType="VARCHAR" />
+    <result column="hy_remain_money" property="hyRemainMoney" jdbcType="VARCHAR" />
+    <result column="hy_birthday" property="hyBirthday" jdbcType="VARCHAR" />
+    <result column="hy_cunt" property="hyCunt" jdbcType="VARCHAR" />
+    <result column="hy_bz" property="hyBz" jdbcType="VARCHAR" />
+    <result column="hy_jf" property="hyJf" jdbcType="VARCHAR" />
+    <result column="hy_date" property="hyDate" jdbcType="VARCHAR" />
+    <result column="hy_expense" property="hyExpense" jdbcType="VARCHAR" />
+    <result column="hy_address" property="hyAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.Vip" >
+    insert into vip (hy_code, hy_kind_code, hy_tel, 
+      hy_name, hy_card, hy_photo, 
+      hy_total, hy_remain_money, hy_birthday, 
+      hy_cunt, hy_bz, hy_jf, 
+      hy_date, hy_expense, hy_address
+      )
+    values (#{hyCode,jdbcType=VARCHAR}, #{hyKindCode,jdbcType=VARCHAR}, #{hyTel,jdbcType=VARCHAR}, 
+      #{hyName,jdbcType=VARCHAR}, #{hyCard,jdbcType=VARCHAR}, #{hyPhoto,jdbcType=VARCHAR}, 
+      #{hyTotal,jdbcType=VARCHAR}, #{hyRemainMoney,jdbcType=VARCHAR}, #{hyBirthday,jdbcType=VARCHAR}, 
+      #{hyCunt,jdbcType=VARCHAR}, #{hyBz,jdbcType=VARCHAR}, #{hyJf,jdbcType=VARCHAR}, 
+      #{hyDate,jdbcType=VARCHAR}, #{hyExpense,jdbcType=VARCHAR}, #{hyAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.Vip" >
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hyCode != null" >
+        hy_code,
+      </if>
+      <if test="hyKindCode != null" >
+        hy_kind_code,
+      </if>
+      <if test="hyTel != null" >
+        hy_tel,
+      </if>
+      <if test="hyName != null" >
+        hy_name,
+      </if>
+      <if test="hyCard != null" >
+        hy_card,
+      </if>
+      <if test="hyPhoto != null" >
+        hy_photo,
+      </if>
+      <if test="hyTotal != null" >
+        hy_total,
+      </if>
+      <if test="hyRemainMoney != null" >
+        hy_remain_money,
+      </if>
+      <if test="hyBirthday != null" >
+        hy_birthday,
+      </if>
+      <if test="hyCunt != null" >
+        hy_cunt,
+      </if>
+      <if test="hyBz != null" >
+        hy_bz,
+      </if>
+      <if test="hyJf != null" >
+        hy_jf,
+      </if>
+      <if test="hyDate != null" >
+        hy_date,
+      </if>
+      <if test="hyExpense != null" >
+        hy_expense,
+      </if>
+      <if test="hyAddress != null" >
+        hy_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hyCode != null" >
+        #{hyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hyKindCode != null" >
+        #{hyKindCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hyTel != null" >
+        #{hyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="hyName != null" >
+        #{hyName,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCard != null" >
+        #{hyCard,jdbcType=VARCHAR},
+      </if>
+      <if test="hyPhoto != null" >
+        #{hyPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="hyTotal != null" >
+        #{hyTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="hyRemainMoney != null" >
+        #{hyRemainMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="hyBirthday != null" >
+        #{hyBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCunt != null" >
+        #{hyCunt,jdbcType=VARCHAR},
+      </if>
+      <if test="hyBz != null" >
+        #{hyBz,jdbcType=VARCHAR},
+      </if>
+      <if test="hyJf != null" >
+        #{hyJf,jdbcType=VARCHAR},
+      </if>
+      <if test="hyDate != null" >
+        #{hyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hyExpense != null" >
+        #{hyExpense,jdbcType=VARCHAR},
+      </if>
+      <if test="hyAddress != null" >
+        #{hyAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="sellAllVip"  resultMap="BaseResultMap">
+  		SELECT * FROM vip 
+  </select>
+  <select id="sellAllVipFenye" parameterType="com.hzyc.ccs.model.Vip" resultMap="BaseResultMap">
+  		select * from vip 
+  		where 1 = 1 
+  		<if test="hyCuntL != null and hyCuntL != ''" >
+   			and CAST(hy_cunt AS SIGNED) &gt;= #{hyCuntL} 
+     	 </if>
+     	 <if test="hyCuntR != null and hyCuntR != ''" >
+   			and CAST(hy_cunt AS SIGNED) &lt;= #{hyCuntR}
+     	 </if>
+     	 <if test="hyDateL != null and hyDateL != ''" >
+   			and CAST(hy_date AS SIGNED) &gt;= #{hyDateL} 
+     	 </if>
+     	 <if test="hyDateR != null and hyDateR != ''" >
+   			and CAST(hy_date AS SIGNED) &lt;= #{hyDateR}
+     	 </if>
+     	 <if test="hyExpenseL != null and hyExpenseL != ''" >
+   			and CAST(hy_expense AS SIGNED) &gt;= #{hyExpenseL} 
+     	 </if>
+     	 <if test="hyExpenseR != null and hyExpenseR != ''" >
+   			and CAST(hy_expense AS SIGNED) &lt;= #{hyExpenseR}
+     	 </if>
+     	 limit #{startLine},#{perPageLine}
+  		
+  </select>
+  <select id="selAllVipTotal" parameterType="com.hzyc.ccs.model.Vip" resultType="java.lang.String">
+ 	 SELECT SUM(hy_total) FROM vip
+  </select>
+  <select id="selVipTotalExpense" parameterType="com.hzyc.ccs.model.Vip" resultType="java.lang.String">
+  	SELECT SUM(pay_way1_shishou_money) FROM orders WHERE pay_way1='会员支付'
+  		<if test="hyDateL != null and hyDateL != ''" >
+   			AND SUBSTR(dd_time,1,10) &gt;= #{hyDateL} 
+     	 </if>
+     	 <if test="hyDateR != null and hyDateR != ''" >
+   			AND SUBSTR(dd_time,1,10) &lt;= #{hyDateR}
+     	 </if>
+  </select>
+</mapper>

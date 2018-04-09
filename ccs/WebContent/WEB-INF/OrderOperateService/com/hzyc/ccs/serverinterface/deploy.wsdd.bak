@@ -1,0 +1,37 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from OrderOperateService WSDL service -->
+
+  <service name="OrderOperate" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serverinterface.ccs.hzyc.com"/>
+      <parameter name="wsdlServiceElement" value="OrderOperateService"/>
+      <parameter name="schemaQualified" value="http://model.client.ccs.hzyc.com,http://serverinterface.ccs.hzyc.com"/>
+      <parameter name="wsdlServicePort" value="OrderOperate"/>
+      <parameter name="className" value="com.hzyc.ccs.serverinterface.OrderOperateSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="OrderOperate"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="insertOrder" qname="operNS:insertOrder" xmlns:operNS="http://serverinterface.ccs.hzyc.com" returnQName="retNS:insertOrderReturn" xmlns:retNS="http://serverinterface.ccs.hzyc.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:order" xmlns:pns="http://serverinterface.ccs.hzyc.com" type="tns:Orders" xmlns:tns="http://model.client.ccs.hzyc.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="insertOrder"/>
+
+      <typeMapping
+        xmlns:ns="http://model.client.ccs.hzyc.com"
+        qname="ns:Orders"
+        type="java:com.hzyc.ccs.client.model.Orders"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

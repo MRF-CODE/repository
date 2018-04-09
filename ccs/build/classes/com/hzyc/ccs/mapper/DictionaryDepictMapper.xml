@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.DictionaryDepictMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.DictionaryDepict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dic_type" property="dicType" jdbcType="VARCHAR" />
+    <result column="dic_type_name" property="dicTypeName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dic_type, dic_type_name, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary_depict
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dictionary_depict
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.DictionaryDepict" >
+    insert into dictionary_depict (id, dic_type, dic_type_name, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{dicType,jdbcType=VARCHAR}, #{dicTypeName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.DictionaryDepict" >
+    insert into dictionary_depict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dicType != null" >
+        dic_type,
+      </if>
+      <if test="dicTypeName != null" >
+        dic_type_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dicType != null" >
+        #{dicType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeName != null" >
+        #{dicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.ccs.model.DictionaryDepict" >
+    update dictionary_depict
+    <set >
+      <if test="dicType != null" >
+        dic_type = #{dicType,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeName != null" >
+        dic_type_name = #{dicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.ccs.model.DictionaryDepict" >
+    update dictionary_depict
+    set dic_type = #{dicType,jdbcType=VARCHAR},
+      dic_type_name = #{dicTypeName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

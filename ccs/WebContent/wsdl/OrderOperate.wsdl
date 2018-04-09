@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://serverinterface.ccs.hzyc.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serverinterface.ccs.hzyc.com" xmlns:intf="http://serverinterface.ccs.hzyc.com" xmlns:tns1="http://model.client.ccs.hzyc.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://serverinterface.ccs.hzyc.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.client.ccs.hzyc.com"/>
+   <element name="insertOrder">
+    <complexType>
+     <sequence>
+      <element name="order" type="tns1:Orders"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertOrderResponse">
+    <complexType>
+     <sequence>
+      <element name="insertOrderReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.client.ccs.hzyc.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Orders">
+    <sequence>
+     <element name="allGoods" nillable="true" type="xsd:string"/>
+     <element name="cashier" nillable="true" type="xsd:string"/>
+     <element name="chanPinBz" nillable="true" type="xsd:string"/>
+     <element name="chooseGood" nillable="true" type="xsd:string"/>
+     <element name="customerAddress" nillable="true" type="xsd:string"/>
+     <element name="customerBz" nillable="true" type="xsd:string"/>
+     <element name="customerName" nillable="true" type="xsd:string"/>
+     <element name="customerTel" nillable="true" type="xsd:string"/>
+     <element name="ddCode" nillable="true" type="xsd:string"/>
+     <element name="ddTime" nillable="true" type="xsd:string"/>
+     <element name="endTime" nillable="true" type="xsd:string"/>
+     <element name="fork" nillable="true" type="xsd:string"/>
+     <element name="hat" nillable="true" type="xsd:string"/>
+     <element name="jiFenToMoney" nillable="true" type="xsd:string"/>
+     <element name="payJifenMoney" nillable="true" type="xsd:string"/>
+     <element name="payState" nillable="true" type="xsd:string"/>
+     <element name="payWay1" nillable="true" type="xsd:string"/>
+     <element name="payWay1ShishouMoney" nillable="true" type="xsd:string"/>
+     <element name="payWay2" nillable="true" type="xsd:string"/>
+     <element name="payWay2ShishouMoney" nillable="true" type="xsd:string"/>
+     <element name="peisongfei" nillable="true" type="xsd:string"/>
+     <element name="sellStore" nillable="true" type="xsd:string"/>
+     <element name="setList" nillable="true" type="xsd:string"/>
+     <element name="songhuoDate" nillable="true" type="xsd:string"/>
+     <element name="songhuoPeople" nillable="true" type="xsd:string"/>
+     <element name="songhuoState" nillable="true" type="xsd:string"/>
+     <element name="songhuoTime" nillable="true" type="xsd:string"/>
+     <element name="startTime" nillable="true" type="xsd:string"/>
+     <element name="vipCode" nillable="true" type="xsd:string"/>
+     <element name="weikuan" nillable="true" type="xsd:string"/>
+     <element name="yingshouMoney" nillable="true" type="xsd:string"/>
+     <element name="zhaolingMoney" nillable="true" type="xsd:string"/>
+     <element name="zhuoHao" nillable="true" type="xsd:string"/>
+     <element name="zuhezhifuState" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="insertOrderResponse">
+
+      <wsdl:part element="impl:insertOrderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertOrderRequest">
+
+      <wsdl:part element="impl:insertOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="OrderOperate">
+
+      <wsdl:operation name="insertOrder">
+
+         <wsdl:input message="impl:insertOrderRequest" name="insertOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertOrderResponse" name="insertOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="OrderOperateSoapBinding" type="impl:OrderOperate">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="insertOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="OrderOperateService">
+
+      <wsdl:port binding="impl:OrderOperateSoapBinding" name="OrderOperate">
+
+         <wsdlsoap:address location="http://localhost:9787/ccs/services/OrderOperate"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Orders" >
+    <result column="dd_code" property="ddCode" jdbcType="VARCHAR" />
+    <result column="dd_time" property="ddTime" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_tel" property="customerTel" jdbcType="VARCHAR" />
+    <result column="customer_address" property="customerAddress" jdbcType="VARCHAR" />
+    <result column="fork" property="fork" jdbcType="VARCHAR" />
+    <result column="hat" property="hat" jdbcType="VARCHAR" />
+    <result column="songhuo_date" property="songhuoDate" jdbcType="VARCHAR" />
+    <result column="songhuo_time" property="songhuoTime" jdbcType="VARCHAR" />
+    <result column="customer_bz" property="customerBz" jdbcType="VARCHAR" />
+    <result column="pay_state" property="payState" jdbcType="VARCHAR" />
+    <result column="songhuo_state" property="songhuoState" jdbcType="VARCHAR" />
+    <result column="zuhezhifu_state" property="zuhezhifuState" jdbcType="VARCHAR" />
+    <result column="yingshou_money" property="yingshouMoney" jdbcType="VARCHAR" />
+    <result column="pay_way1" property="payWay1" jdbcType="VARCHAR" />
+    <result column="pay_way1_shishou_money" property="payWay1ShishouMoney" jdbcType="VARCHAR" />
+    <result column="pay_jifen_money" property="payJifenMoney" jdbcType="VARCHAR" />
+    <result column="pay_way2" property="payWay2" jdbcType="VARCHAR" />
+    <result column="pay_way2_shishou_money" property="payWay2ShishouMoney" jdbcType="VARCHAR" />
+    <result column="zhaoling_money" property="zhaolingMoney" jdbcType="VARCHAR" />
+    <result column="sell_store" property="sellStore" jdbcType="VARCHAR" />
+    <result column="cashier" property="cashier" jdbcType="VARCHAR" />
+    <result column="songhuo_people" property="songhuoPeople" jdbcType="VARCHAR" />
+    <result column="peisongfei" property="peisongfei" jdbcType="VARCHAR" />
+    <result column="vip_code" property="vipCode" jdbcType="VARCHAR" />
+    <result column="chan_pin_bz" property="chanPinBz" jdbcType="VARCHAR" />
+    <result column="jifen_to_money" property="jifenToMoney" jdbcType="VARCHAR" />
+    <result column="zhuo_hao" property="zhuoHao" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.Orders" >
+    insert into orders (dd_code, dd_time, customer_name, 
+      customer_tel, customer_address, fork, 
+      hat, songhuo_date, songhuo_time, 
+      customer_bz, pay_state, songhuo_state, 
+      zuhezhifu_state, yingshou_money, pay_way1, 
+      pay_way1_shishou_money, pay_jifen_money, pay_way2, 
+      pay_way2_shishou_money, zhaoling_money, sell_store, 
+      cashier, songhuo_people, peisongfei, 
+      vip_code, chan_pin_bz, jifen_to_money, 
+      zhuo_hao)
+    values (#{ddCode,jdbcType=VARCHAR}, #{ddTime,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{customerTel,jdbcType=VARCHAR}, #{customerAddress,jdbcType=VARCHAR}, #{fork,jdbcType=VARCHAR}, 
+      #{hat,jdbcType=VARCHAR}, #{songhuoDate,jdbcType=VARCHAR}, #{songhuoTime,jdbcType=VARCHAR}, 
+      #{customerBz,jdbcType=VARCHAR}, #{payState,jdbcType=VARCHAR}, #{songhuoState,jdbcType=VARCHAR}, 
+      #{zuhezhifuState,jdbcType=VARCHAR}, #{yingshouMoney,jdbcType=VARCHAR}, #{payWay1,jdbcType=VARCHAR}, 
+      #{payWay1ShishouMoney,jdbcType=VARCHAR}, #{payJifenMoney,jdbcType=VARCHAR}, #{payWay2,jdbcType=VARCHAR}, 
+      #{payWay2ShishouMoney,jdbcType=VARCHAR}, #{zhaolingMoney,jdbcType=VARCHAR}, #{sellStore,jdbcType=VARCHAR}, 
+      #{cashier,jdbcType=VARCHAR}, #{songhuoPeople,jdbcType=VARCHAR}, #{peisongfei,jdbcType=VARCHAR}, 
+      #{vipCode,jdbcType=VARCHAR}, #{chanPinBz,jdbcType=VARCHAR}, #{jifenToMoney,jdbcType=VARCHAR}, 
+      #{zhuoHao,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ddCode != null" >
+        dd_code,
+      </if>
+      <if test="ddTime != null" >
+        dd_time,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerTel != null" >
+        customer_tel,
+      </if>
+      <if test="customerAddress != null" >
+        customer_address,
+      </if>
+      <if test="fork != null" >
+        fork,
+      </if>
+      <if test="hat != null" >
+        hat,
+      </if>
+      <if test="songhuoDate != null" >
+        songhuo_date,
+      </if>
+      <if test="songhuoTime != null" >
+        songhuo_time,
+      </if>
+      <if test="customerBz != null" >
+        customer_bz,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="songhuoState != null" >
+        songhuo_state,
+      </if>
+      <if test="zuhezhifuState != null" >
+        zuhezhifu_state,
+      </if>
+      <if test="yingshouMoney != null" >
+        yingshou_money,
+      </if>
+      <if test="payWay1 != null" >
+        pay_way1,
+      </if>
+      <if test="payWay1ShishouMoney != null" >
+        pay_way1_shishou_money,
+      </if>
+      <if test="payJifenMoney != null" >
+        pay_jifen_money,
+      </if>
+      <if test="payWay2 != null" >
+        pay_way2,
+      </if>
+      <if test="payWay2ShishouMoney != null" >
+        pay_way2_shishou_money,
+      </if>
+      <if test="zhaolingMoney != null" >
+        zhaoling_money,
+      </if>
+      <if test="sellStore != null" >
+        sell_store,
+      </if>
+      <if test="cashier != null" >
+        cashier,
+      </if>
+      <if test="songhuoPeople != null" >
+        songhuo_people,
+      </if>
+      <if test="peisongfei != null" >
+        peisongfei,
+      </if>
+      <if test="vipCode != null" >
+        vip_code,
+      </if>
+      <if test="chanPinBz != null" >
+        chan_pin_bz,
+      </if>
+      <if test="jifenToMoney != null" >
+        jifen_to_money,
+      </if>
+      <if test="zhuoHao != null" >
+        zhuo_hao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ddCode != null" >
+        #{ddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ddTime != null" >
+        #{ddTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTel != null" >
+        #{customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAddress != null" >
+        #{customerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fork != null" >
+        #{fork,jdbcType=VARCHAR},
+      </if>
+      <if test="hat != null" >
+        #{hat,jdbcType=VARCHAR},
+      </if>
+      <if test="songhuoDate != null" >
+        #{songhuoDate,jdbcType=VARCHAR},
+      </if>
+      <if test="songhuoTime != null" >
+        #{songhuoTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerBz != null" >
+        #{customerBz,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=VARCHAR},
+      </if>
+      <if test="songhuoState != null" >
+        #{songhuoState,jdbcType=VARCHAR},
+      </if>
+      <if test="zuhezhifuState != null" >
+        #{zuhezhifuState,jdbcType=VARCHAR},
+      </if>
+      <if test="yingshouMoney != null" >
+        #{yingshouMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1 != null" >
+        #{payWay1,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1ShishouMoney != null" >
+        #{payWay1ShishouMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payJifenMoney != null" >
+        #{payJifenMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2 != null" >
+        #{payWay2,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2ShishouMoney != null" >
+        #{payWay2ShishouMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="zhaolingMoney != null" >
+        #{zhaolingMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="sellStore != null" >
+        #{sellStore,jdbcType=VARCHAR},
+      </if>
+      <if test="cashier != null" >
+        #{cashier,jdbcType=VARCHAR},
+      </if>
+      <if test="songhuoPeople != null" >
+        #{songhuoPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="peisongfei != null" >
+        #{peisongfei,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCode != null" >
+        #{vipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chanPinBz != null" >
+        #{chanPinBz,jdbcType=VARCHAR},
+      </if>
+      <if test="jifenToMoney != null" >
+        #{jifenToMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuoHao != null" >
+        #{zhuoHao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

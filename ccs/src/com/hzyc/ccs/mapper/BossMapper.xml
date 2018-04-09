@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.BossMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Boss" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="userpw" property="userpw" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uname, userpw
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from boss
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from boss
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.Boss" >
+    insert into boss (id, uname, userpw
+      )
+    values (#{id,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{userpw,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.Boss" >
+    insert into boss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="userpw != null" >
+        userpw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null" >
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.ccs.model.Boss" >
+    update boss
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null" >
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.ccs.model.Boss" >
+    update boss
+    set uname = #{uname,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="login" parameterType="com.hzyc.ccs.model.Boss" resultType="com.hzyc.ccs.model.Boss">
+  	select * from boss where uname = #{uname} and userpw = #{userpw}
+  </select>
+    <select id="selPass" parameterType="java.lang.Integer" resultType="java.lang.String">
+  	select userpw from boss where id = #{value}
+  </select>
+  <update id="updPw" parameterType="com.hzyc.ccs.model.Boss">
+  	update boss set userpw= #{userpw} where id= #{id}
+  </update>
+</mapper>

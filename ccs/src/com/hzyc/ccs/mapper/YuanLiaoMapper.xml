@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.YuanLiaoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.YuanLiao" >
+    <result column="yl_code" property="ylCode" jdbcType="VARCHAR" />
+    <result column="yl_name" property="ylName" jdbcType="VARCHAR" />
+    <result column="yl_price" property="ylPrice" jdbcType="VARCHAR" />
+    <result column="yl_number" property="ylNumber" jdbcType="VARCHAR" />
+    <result column="yl_bz" property="ylBz" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.YuanLiao" >
+    insert into yuanliao (yl_code, yl_name, yl_price, 
+      yl_number, yl_bz)
+    values (#{ylCode,jdbcType=VARCHAR}, #{ylName,jdbcType=VARCHAR}, #{ylPrice,jdbcType=VARCHAR}, 
+      #{ylNumber,jdbcType=VARCHAR}, #{ylBz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.YuanLiao" >
+    insert into yuanliao
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ylCode != null" >
+        yl_code,
+      </if>
+      <if test="ylName != null" >
+        yl_name,
+      </if>
+      <if test="ylPrice != null" >
+        yl_price,
+      </if>
+      <if test="ylNumber != null" >
+        yl_number,
+      </if>
+      <if test="ylBz != null" >
+        yl_bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ylCode != null" >
+        #{ylCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ylName != null" >
+        #{ylName,jdbcType=VARCHAR},
+      </if>
+      <if test="ylPrice != null" >
+        #{ylPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="ylNumber != null" >
+        #{ylNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ylBz != null" >
+        #{ylBz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.KucunMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Kucun" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="good_code" property="goodCode" jdbcType="VARCHAR" />
+    <result column="good_number" property="goodNumber" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, good_code, good_number, store_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kucun
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kucun
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.Kucun" >
+    insert into kucun (id, good_code, good_number, 
+      store_name)
+    values (#{id,jdbcType=INTEGER}, #{goodCode,jdbcType=VARCHAR}, #{goodNumber,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.Kucun" >
+    insert into kucun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodCode != null" >
+        good_code,
+      </if>
+      <if test="goodNumber != null" >
+        good_number,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodCode != null" >
+        #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        #{goodNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.ccs.model.Kucun" >
+    update kucun
+    <set >
+      <if test="goodCode != null" >
+        good_code = #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        good_number = #{goodNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.ccs.model.Kucun" >
+    update kucun
+    set good_code = #{goodCode,jdbcType=VARCHAR},
+      good_number = #{goodNumber,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

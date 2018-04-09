@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.ccs.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.ccs.model.Users" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="userpw" property="userpw" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="img_name" property="imgName" jdbcType="VARCHAR" />
+    <result column="img_name1" property="imgName1" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzyc.ccs.model.UsersWithBLOBs" extends="BaseResultMap" >
+    <result column="img" property="img" jdbcType="LONGVARBINARY" />
+    <result column="img1" property="img1" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, uname, userpw, store_name, true_name, img_name, img_name1
+  </sql>
+  <sql id="Blob_Column_List" >
+    img, img1
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.ccs.model.UsersWithBLOBs" >
+    insert into users (userid, uname, userpw, 
+      store_name, true_name, img_name, 
+      img_name1, img, img1
+      )
+    values (#{userid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{userpw,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, #{imgName,jdbcType=VARCHAR}, 
+      #{imgName1,jdbcType=VARCHAR}, #{img,jdbcType=LONGVARBINARY}, #{img1,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.ccs.model.UsersWithBLOBs" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="userpw != null" >
+        userpw,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="imgName != null" >
+        img_name,
+      </if>
+      <if test="imgName1 != null" >
+        img_name1,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="img1 != null" >
+        img1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null" >
+        #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName != null" >
+        #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName1 != null" >
+        #{imgName1,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="img1 != null" >
+        #{img1,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.ccs.model.UsersWithBLOBs" >
+    update users
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="userpw != null" >
+        userpw = #{userpw,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName != null" >
+        img_name = #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName1 != null" >
+        img_name1 = #{imgName1,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="img1 != null" >
+        img1 = #{img1,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.ccs.model.UsersWithBLOBs" >
+    update users
+    set uname = #{uname,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      img_name = #{imgName,jdbcType=VARCHAR},
+      img_name1 = #{imgName1,jdbcType=VARCHAR},
+      img = #{img,jdbcType=LONGVARBINARY},
+      img1 = #{img1,jdbcType=LONGVARBINARY}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.ccs.model.Users" >
+    update users
+    set uname = #{uname,jdbcType=VARCHAR},
+      userpw = #{userpw,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      img_name = #{imgName,jdbcType=VARCHAR},
+      img_name1 = #{imgName1,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <select id="selUsers" resultMap="BaseResultMap">
+ 	select * from users
+  </select>
+  <select id="selOneUser" resultMap="BaseResultMap">
+ 	select * from users where userid = #{userid}
+  </select>
+  
+   <select id="selUsersFenYe" parameterType="com.hzyc.ccs.model.Users" resultMap="BaseResultMap">
+ 	select * from users limit #{startLine},#{perPageLine}
+  </select>
+  
+  <delete id="deleteByuname" parameterType="java.lang.String" >
+    delete from users
+    where uname = #{uname,jdbcType=VARCHAR}
+  </delete>
+</mapper>
